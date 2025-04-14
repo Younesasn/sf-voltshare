@@ -8,13 +8,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFactorInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -48,13 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $tel = null;
 
-    #[ORM\Column]
-    private ?bool $isConfirmated = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $expiration = null;
-
-    #[ORM\Column(length: 6)]
+    #[ORM\Column(length: 6, nullable: true)]
     private ?string $code = null;
 
     /**
@@ -140,6 +135,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    function getEmailAuthCode(): ?string
+    {
+        return $this->code;
+    }
+
+    function setEmailAuthCode(string $authCode): void
+    {
+        $this->code = $authCode;
+    }
+
+    function getEmailAuthRecipient(): string
+    {
+        return $this->email;
+    }
+
+    function isEmailAuthEnabled(): bool
+    {
+        return true;
+    }
+
     /**
      * @see PasswordAuthenticatedUserInterface
      */
@@ -208,42 +223,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTel(string $tel): static
     {
         $this->tel = $tel;
-
-        return $this;
-    }
-
-    public function isConfirmated(): ?bool
-    {
-        return $this->isConfirmated;
-    }
-
-    public function setIsConfirmated(bool $isConfirmated): static
-    {
-        $this->isConfirmated = $isConfirmated;
-
-        return $this;
-    }
-
-    public function getExpiration(): ?\DateTimeInterface
-    {
-        return $this->expiration;
-    }
-
-    public function setExpiration(\DateTimeInterface $expiration): static
-    {
-        $this->expiration = $expiration;
-
-        return $this;
-    }
-
-    public function getCode(): ?string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): static
-    {
-        $this->code = $code;
 
         return $this;
     }
