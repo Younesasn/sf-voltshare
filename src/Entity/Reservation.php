@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
@@ -14,24 +15,30 @@ class Reservation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['user:read'])]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['user:read'])]
     private ?\DateTimeInterface $start_time = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['user:read'])]
     private ?\DateTimeInterface $endTime = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[Groups(['user:read'])]
     private ?Station $station = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[Groups(['user:read'])]
     private ?Car $car = null;
 
     public function getId(): ?int

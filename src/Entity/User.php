@@ -3,16 +3,32 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Post;
+use App\Controller\MeController;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource()]
+#[ApiResource(
+    operations: [
+        new Get(
+            name: 'me',
+            uriTemplate: '/me',
+            controller: MeController::class,
+            security: "is_granted('IS_AUTHENTICATED_FULLY')",
+            read: false,
+            output: User::class,
+            normalizationContext: ['groups' => ['user:read']]
+        ),
+        new Post()
+    ]
+)]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFactorInterface
@@ -20,9 +36,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Groups(['user:read'])]
     private ?string $email = null;
 
     /**
@@ -38,15 +56,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read'])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read'])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read'])]
     private ?string $adress = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read'])]
     private ?string $tel = null;
 
     #[ORM\Column(length: 6, nullable: true)]
@@ -56,24 +78,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
      * @var Collection<int, Car>
      */
     #[ORM\OneToMany(targetEntity: Car::class, mappedBy: 'user')]
+    #[Groups(['user:read'])]
     private Collection $cars;
 
     /**
      * @var Collection<int, Station>
      */
     #[ORM\OneToMany(targetEntity: Station::class, mappedBy: 'user')]
+    #[Groups(['user:read'])]
     private Collection $stations;
 
     /**
      * @var Collection<int, Station>
      */
     #[ORM\ManyToMany(targetEntity: Station::class, inversedBy: 'usersStarred')]
+    #[Groups(['user:read'])]
     private Collection $stationStarred;
 
     /**
      * @var Collection<int, Reservation>
      */
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'user')]
+    #[Groups(['user:read'])]
     private Collection $reservations;
 
     public function __construct()

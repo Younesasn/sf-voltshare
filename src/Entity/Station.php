@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: StationRepository::class)]
@@ -16,33 +17,43 @@ class Station
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read'])]
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?float $latitude = null;
 
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?float $longitude = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read'])]
     private ?string $adress = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read'])]
     private ?string $picture = null;
 
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?float $price = null;
 
     #[ORM\Column]
+    #[Groups(['user:read'])]
     private ?float $power = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['user:read'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:read'])]
     private ?string $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'stations')]
@@ -52,18 +63,21 @@ class Station
      * @var Collection<int, Timeslot>
      */
     #[ORM\OneToMany(targetEntity: Timeslot::class, mappedBy: 'station')]
+    #[Groups(['user:read'])]
     private Collection $timeslots;
 
     /**
      * @var Collection<int, User>
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'stationStarred')]
+    #[Groups(['user:read'])]
     private Collection $usersStarred;
 
     /**
      * @var Collection<int, Reservation>
      */
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'station')]
+    #[Groups(['user:read'])]
     private Collection $reservations;
 
     public function __construct()
