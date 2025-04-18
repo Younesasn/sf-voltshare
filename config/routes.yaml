@@ -9,3 +9,6 @@ controllers:
 
 2fa_login_check:
     path: /2fa/check
+
+api_refresh_token:
+    path: /api/token/refresh
