@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Controller\MeController;
 use App\Repository\UserRepository;
@@ -26,7 +27,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             output: User::class,
             normalizationContext: ['groups' => ['user:read']]
         ),
-        new Post()
+        new Post(),
+        new Patch(),
     ]
 )]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -101,6 +103,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'user')]
     #[Groups(['user:read'])]
     private Collection $reservations;
+
+    #[ORM\Column]
+    private ?bool $isDeleted = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = null;
 
     public function __construct()
     {
@@ -363,6 +371,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
                 $reservation->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(bool $isDeleted): static
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): static
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

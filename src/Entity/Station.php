@@ -57,6 +57,7 @@ class Station
     private ?string $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'stations')]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?User $user = null;
 
     /**
