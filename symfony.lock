@@ -91,7 +91,7 @@
         ]
     },
     "scheb/2fa-bundle": {
-        "version": "7.7",
+        "version": "7.9",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",

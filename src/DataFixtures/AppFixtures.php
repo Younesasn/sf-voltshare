@@ -179,24 +179,16 @@ class AppFixtures extends Fixture
         }
 
         $manager->flush();
-
-        $stations = $manager->getRepository(Station::class)->findAll(); // récup toutes les stations persistées
-
-        $weekdays = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-        $startHour = 8;
-        $endHour = 20; // Dernier créneau : 19h-20h
-
+        
         foreach ($manager->getRepository(Station::class)->findAll() as $station) {
             foreach (Weekday::cases() as $weekday) {
-                for ($hour = 8; $hour < 20; $hour++) {
-                    $timeslot = new Timeslot();
-                    $timeslot->setWeekday($weekday);
-                    $timeslot->setStartTime(new \DateTime("$hour:00"));
-                    $timeslot->setEndTime(new \DateTime(($hour + 1) . ":00"));
-                    $timeslot->setStation($station);
+                $timeslot = new Timeslot();
+                $timeslot->setWeekday($weekday);
+                $timeslot->setStartTime(new \DateTime("08:00"));
+                $timeslot->setEndTime(new \DateTime(("20:00")));
+                $timeslot->setStation($station);
 
-                    $manager->persist($timeslot);
-                }
+                $manager->persist($timeslot);
             }
         }
 
