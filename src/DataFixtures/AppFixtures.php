@@ -171,6 +171,10 @@ class AppFixtures extends Fixture
             $manager->persist($station);
         }
 
+        $car = new Car();
+        $car->setModel("Anonymous");
+        $manager->persist($car);
+
         foreach ($users as $user) {
             $car = new Car();
             $car->setModel($faker->randomElement(['Tesla Model 3', 'Tesla Model Y', 'Tesla Model X']))
