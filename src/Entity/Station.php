@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\StationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,6 +14,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: StationRepository::class)]
+// ?timeslots.weekday=mercredi&reservations.date=2025-04-23
+#[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'timeslots.weekday' => 'exact', 'reservations.date' => 'exact'])]
 class Station
 {
     #[ORM\Id]

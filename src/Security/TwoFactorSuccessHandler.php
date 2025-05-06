@@ -17,8 +17,6 @@ class TwoFactorSuccessHandler implements AuthenticationSuccessHandlerInterface
   }
 
   public function onAuthenticationSuccess(Request $request, TokenInterface $token): ?Response {
-    $user = $token->getUser();
     return new Response('{"login": "success", "two_factor_complete": false}');
-    // return new JsonResponse(['token' => $this->jwtManager->create($user)]);
   }
 }

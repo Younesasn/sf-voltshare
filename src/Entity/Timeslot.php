@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: TimeslotRepository::class)]
+// ?weekday=mercredi&station=2&station.reservation.date=?
 #[ApiFilter(SearchFilter::class, properties: ["station"=>"exact", "weekday"=>"ipartial", "station.reservations.date" => "exact"])]
 class Timeslot
 {

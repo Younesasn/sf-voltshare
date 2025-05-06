@@ -18,6 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
     operations: [
+        new Get(),
         new Get(
             name: 'me',
             uriTemplate: '/me',
@@ -25,7 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             security: "is_granted('IS_AUTHENTICATED_FULLY')",
             read: false,
             output: User::class,
-            normalizationContext: ['groups' => ['user:read']]
+            normalizationContext: ['groups' => ['user:read']],
         ),
         new Post(),
         new Patch(),
@@ -108,6 +109,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     private ?bool $isDeleted = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['user:read'])]
     private ?string $avatar = null;
 
     public function __construct()
