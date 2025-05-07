@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250423134218 extends AbstractMigration
+final class Version20250429080549 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,6 +22,9 @@ final class Version20250423134218 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql(<<<'SQL'
             CREATE TABLE car (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, model VARCHAR(255) NOT NULL, INDEX IDX_773DE69DA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+        SQL);
+        $this->addSql(<<<'SQL'
+            CREATE TABLE password_token (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, token VARCHAR(50) NOT NULL, expires_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_BEAB6C245F37A13B (token), INDEX IDX_BEAB6C24A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
             CREATE TABLE refresh_tokens (id INT AUTO_INCREMENT NOT NULL, refresh_token VARCHAR(128) NOT NULL, username VARCHAR(255) NOT NULL, valid DATETIME NOT NULL, UNIQUE INDEX UNIQ_9BACE7E1C74F2195 (refresh_token), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
@@ -43,6 +46,9 @@ final class Version20250423134218 extends AbstractMigration
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE car ADD CONSTRAINT FK_773DE69DA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE password_token ADD CONSTRAINT FK_BEAB6C24A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE reservation ADD CONSTRAINT FK_42C8495521BDB235 FOREIGN KEY (station_id) REFERENCES station (id)
@@ -74,6 +80,9 @@ final class Version20250423134218 extends AbstractMigration
             ALTER TABLE car DROP FOREIGN KEY FK_773DE69DA76ED395
         SQL);
         $this->addSql(<<<'SQL'
+            ALTER TABLE password_token DROP FOREIGN KEY FK_BEAB6C24A76ED395
+        SQL);
+        $this->addSql(<<<'SQL'
             ALTER TABLE reservation DROP FOREIGN KEY FK_42C8495521BDB235
         SQL);
         $this->addSql(<<<'SQL'
@@ -96,6 +105,9 @@ final class Version20250423134218 extends AbstractMigration
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE car
+        SQL);
+        $this->addSql(<<<'SQL'
+            DROP TABLE password_token
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE refresh_tokens
