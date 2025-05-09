@@ -27,6 +27,7 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
         $users = [];
+        $users[] = $user;
         for ($i = 0; $i < 11; $i++) {
             $user = new User();
             $user->setFirstname($faker->firstName)
