@@ -5,6 +5,12 @@ namespace App\Entity;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use App\Controller\GetStarredStationController;
+use App\Controller\StarredStationController;
+use App\Controller\UnstarredStationController;
 use App\Repository\StationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +18,31 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource()]
+#[ApiResource(
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new GetCollection(
+            name: "Get Station Starred",
+            uriTemplate: "/stations-starred",
+            controller: GetStarredStationController::class,
+            security: "is_granted('IS_AUTHENTICATED_FULLY')",
+            output: Station::class,
+        ),
+        new Post(
+            name: 'Add Favourite Station',
+            uriTemplate: "/stations/{id}/starred",
+            controller: StarredStationController::class,
+            security: "is_granted('IS_AUTHENTICATED_FULLY')",
+        ),
+        new Post(
+            name: "Remove Favourite Station",
+            uriTemplate: "/stations/{id}/unstarred",
+            controller: UnstarredStationController::class,
+            security: "is_granted('IS_AUTHENTICATED_FULLY')",
+        ),
+    ]
+)]
 #[ORM\Entity(repositoryClass: StationRepository::class)]
 // ?timeslots.weekday=mercredi&reservations.date=2025-04-23
 #[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'timeslots.weekday' => 'exact', 'reservations.date' => 'exact'])]
