@@ -18,14 +18,20 @@ class SendDeepLinkForgotPasswordEventListener
   {
     $passwordToken = $event->getPasswordToken();
     $user = $passwordToken->getUser();
+    $deepLink = sprintf('exp://127.0.0.1:8081/--/forgot-password/reset/%s', $passwordToken->getToken());
 
     $message = (new Email())
       ->from('noreply@voltshare.com')
       ->to($user->getEmail())
       ->subject('Reset your password')
-      ->html(
-        sprintf('exp://127.0.0.1:8081/--/forgot-password/%s', $passwordToken->getToken())
-      );
+      ->html(sprintf(
+        'Bonjour,<br><br>
+            Cliquez sur le lien suivant pour réinitialiser votre mot de passe :<br>
+            <a href="%s">Réinitialiser mon mot de passe</a><br><br>
+            Ou copiez ce lien et ouvrez-le manuellement :<br>
+            <code>%1$s</code><br><br>',
+        $deepLink
+      ));
     $this->mailer->send($message);
   }
 }
