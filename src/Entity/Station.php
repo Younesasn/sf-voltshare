@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -44,8 +42,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ]
 )]
 #[ORM\Entity(repositoryClass: StationRepository::class)]
-// ?timeslots.weekday=mercredi&reservations.date=2025-04-23
-#[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'timeslots.weekday' => 'exact', 'reservations.date' => 'exact'])]
 class Station
 {
     #[ORM\Id]
@@ -95,13 +91,6 @@ class Station
     private ?User $user = null;
 
     /**
-     * @var Collection<int, Timeslot>
-     */
-    #[ORM\OneToMany(targetEntity: Timeslot::class, mappedBy: 'station')]
-    #[Groups(['user:read'])]
-    private Collection $timeslots;
-
-    /**
      * @var Collection<int, User>
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'stationStarred')]
@@ -117,7 +106,6 @@ class Station
 
     public function __construct()
     {
-        $this->timeslots = new ArrayCollection();
         $this->usersStarred = new ArrayCollection();
         $this->reservations = new ArrayCollection();
     }
@@ -243,36 +231,6 @@ class Station
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Timeslot>
-     */
-    public function getTimeslots(): Collection
-    {
-        return $this->timeslots;
-    }
-
-    public function addTimeslot(Timeslot $timeslot): static
-    {
-        if (!$this->timeslots->contains($timeslot)) {
-            $this->timeslots->add($timeslot);
-            $timeslot->setStation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTimeslot(Timeslot $timeslot): static
-    {
-        if ($this->timeslots->removeElement($timeslot)) {
-            // set the owning side to null (unless already changed)
-            if ($timeslot->getStation() === $this) {
-                $timeslot->setStation(null);
-            }
-        }
 
         return $this;
     }

@@ -18,7 +18,7 @@ class Reservation
     #[Groups(['user:read'])]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups(['user:read'])]
     private ?\DateTimeInterface $date = null;
 

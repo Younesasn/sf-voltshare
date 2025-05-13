@@ -4,9 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Car;
 use App\Entity\Station;
-use App\Entity\Timeslot;
 use App\Entity\User;
-use App\Enum\Weekday;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -108,20 +106,6 @@ class AppFixtures extends Fixture
             ]))
                 ->setUser($user);
             $manager->persist($car);
-        }
-
-        $manager->flush();
-
-        foreach ($manager->getRepository(Station::class)->findAll() as $station) {
-            foreach (Weekday::cases() as $weekday) {
-                $timeslot = new Timeslot();
-                $timeslot->setWeekday($weekday);
-                $timeslot->setStartTime(new \DateTime("08:00"));
-                $timeslot->setEndTime(new \DateTime(("20:00")));
-                $timeslot->setStation($station);
-
-                $manager->persist($timeslot);
-            }
         }
 
         $manager->flush();
