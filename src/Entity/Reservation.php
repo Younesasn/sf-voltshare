@@ -3,31 +3,42 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use App\Controller\GetReservationByUser;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource()]
+#[ApiResource(
+    operations: [
+        new GetCollection(
+            name: "Get Reservation by User",
+            uriTemplate: "/reservations",
+            controller: GetReservationByUser::class,
+            security: "is_granted('IS_AUTHENTICATED_FULLY')",
+        )
+    ]
+)]
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?\DateTimeInterface $startTime = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?\DateTimeInterface $endTime = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
@@ -38,7 +49,7 @@ class Reservation
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?Car $car = null;
 
     public function getId(): ?int

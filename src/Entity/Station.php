@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Common\Filter\DateFilterInterface;
+use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -39,7 +43,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             controller: UnstarredStationController::class,
             security: "is_granted('IS_AUTHENTICATED_FULLY')",
         ),
-    ]
+    ],
+    normalizationContext: ['groups' => ['station:read']],
 )]
 #[ORM\Entity(repositoryClass: StationRepository::class)]
 class Station
@@ -47,61 +52,62 @@ class Station
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?string $name = null;
 
     #[ORM\Column]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?float $latitude = null;
 
     #[ORM\Column]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?float $longitude = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?string $adress = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?string $picture = null;
 
     #[ORM\Column]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?float $price = null;
 
     #[ORM\Column]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?float $power = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?string $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'stations')]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[Groups(['station:read'])]
     private ?User $user = null;
 
     /**
      * @var Collection<int, User>
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'stationStarred')]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private Collection $usersStarred;
 
     /**
      * @var Collection<int, Reservation>
      */
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'station')]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private Collection $reservations;
 
     public function __construct()
