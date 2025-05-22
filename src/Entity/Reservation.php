@@ -3,23 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\GetCollection;
-use App\Controller\GetReservationByUser;
 use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource(
-    operations: [
-        new GetCollection(
-            name: "Get Reservation by User",
-            uriTemplate: "/reservations",
-            controller: GetReservationByUser::class,
-            security: "is_granted('IS_AUTHENTICATED_FULLY')",
-        )
-    ]
-)]
+#[ApiResource()]
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
