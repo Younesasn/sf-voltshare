@@ -2,10 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Common\Filter\DateFilterInterface;
-use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
-use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -43,6 +39,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             controller: UnstarredStationController::class,
             security: "is_granted('IS_AUTHENTICATED_FULLY')",
         ),
+        new Post()
     ],
     normalizationContext: ['groups' => ['station:read']],
 )]
