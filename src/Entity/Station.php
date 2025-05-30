@@ -84,10 +84,6 @@ class Station
     #[Groups(['user:read', 'station:read'])]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'station:read'])]
-    private ?string $type = null;
-
     #[ORM\ManyToOne(inversedBy: 'stations')]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     #[Groups(['station:read'])]
@@ -210,18 +206,6 @@ class Station
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): static
-    {
-        $this->type = $type;
 
         return $this;
     }

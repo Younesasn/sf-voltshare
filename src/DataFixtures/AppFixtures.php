@@ -13,7 +13,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create();
+        $faker = Factory::create('fr_FR');
 
         $user = new User();
         $user->setFirstname($faker->firstName)
@@ -21,12 +21,12 @@ class AppFixtures extends Fixture
             ->setEmail('test@test.com')
             ->setPassword('test')
             ->setAdress($faker->address)
-            ->setTel($faker->phoneNumber);
+            ->setTel($faker->mobileNumber);
         $manager->persist($user);
 
         $users = [];
         $users[] = $user;
-        for ($i = 0; $i < 11; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $user = new User();
             $user->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
@@ -51,7 +51,6 @@ class AppFixtures extends Fixture
                 ->setPower($item["power"])
                 ->setPrice($item["tarif"])
                 ->setAdress($item['address'])
-                ->setType($item['type'])
                 ->setUser($availableUsers[$index] ?? $availableUsers[array_rand($availableUsers)])
             ;
             $manager->persist($station);
