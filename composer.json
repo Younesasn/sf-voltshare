@@ -30,6 +30,7 @@
         "symfony/http-client": "6.4.*",
         "symfony/mailer": "6.4.*",
         "symfony/mailgun-mailer": "6.4.*",
+        "symfony/mercure-bundle": "^0.3.9",
         "symfony/property-access": "6.4.*",
         "symfony/property-info": "6.4.*",
         "symfony/rate-limiter": "6.4.*",
