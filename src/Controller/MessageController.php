@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Security;
 
 class MessageController extends AbstractController
 {
-  // #[Route('/messages/{id}', name: 'get_conversation', methods: ['GET'])]
   public function __invoke(
     int $id,
     UserRepository $userRepository,

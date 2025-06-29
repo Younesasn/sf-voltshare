@@ -7,6 +7,7 @@ use App\Service\MercurePublisher;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PostPersistEventArgs;
 use Doctrine\ORM\Events;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[AsDoctrineListener(Events::postPersist)]
 class SendingMessageListener
@@ -27,8 +28,8 @@ class SendingMessageListener
 
     $this->mercurePublisher->publish($topic, [
       "id" => $entity->getId(),
-      "sender" => $entity->getSender()->getId(),
-      "receiver" => $entity->getReceiver()->getId(),
+      "sender" => $entity->getSender()->toArray(),
+      "receiver" => $entity->getReceiver()->toArray(),
       "content" => $entity->getContent(),
       "sendAt" => $entity->getSendAt()
     ]);

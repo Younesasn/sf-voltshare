@@ -49,7 +49,7 @@ class Station
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', "conversation:write"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]

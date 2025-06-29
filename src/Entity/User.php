@@ -39,11 +39,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private ?string $email = null;
 
     /**
@@ -59,19 +59,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private ?string $adress = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private ?string $tel = null;
 
     #[ORM\Column(length: 6, nullable: true)]
@@ -81,35 +81,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
      * @var Collection<int, Car>
      */
     #[ORM\OneToMany(targetEntity: Car::class, mappedBy: 'user')]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private Collection $cars;
 
     /**
      * @var Collection<int, Station>
      */
     #[ORM\OneToMany(targetEntity: Station::class, mappedBy: 'user')]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private Collection $stations;
 
     /**
      * @var Collection<int, Station>
      */
     #[ORM\ManyToMany(targetEntity: Station::class, inversedBy: 'usersStarred')]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private Collection $stationStarred;
 
     /**
      * @var Collection<int, Reservation>
      */
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'user')]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private Collection $reservations;
 
     #[ORM\Column]
     private ?bool $isDeleted = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
     private ?string $avatar = null;
 
     /**
@@ -118,6 +118,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'sender')]
     private Collection $messages;
 
+    /**
+     * @var Collection<int, Conversation>
+     */
+    #[ORM\OneToMany(targetEntity: Conversation::class, mappedBy: 'host')]
+    private Collection $hostConversations;
+
+    /**
+     * @var Collection<int, Conversation>
+     */
+    #[ORM\OneToMany(targetEntity: Conversation::class, mappedBy: 'customer')]
+    private Collection $customerConversations;
+
     public function __construct()
     {
         $this->cars = new ArrayCollection();
@@ -125,6 +137,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
         $this->stationStarred = new ArrayCollection();
         $this->reservations = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->hostConversations = new ArrayCollection();
+        $this->customerConversations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -436,5 +450,75 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Conversation>
+     */
+    public function getHostConversations(): Collection
+    {
+        return $this->hostConversations;
+    }
+
+    public function addHostConversation(Conversation $hostConversation): static
+    {
+        if (!$this->hostConversations->contains($hostConversation)) {
+            $this->hostConversations->add($hostConversation);
+            $hostConversation->setHost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHostConversation(Conversation $hostConversation): static
+    {
+        if ($this->hostConversations->removeElement($hostConversation)) {
+            // set the owning side to null (unless already changed)
+            if ($hostConversation->getHost() === $this) {
+                $hostConversation->setHost(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Conversation>
+     */
+    public function getCustomerConversations(): Collection
+    {
+        return $this->customerConversations;
+    }
+
+    public function addCustomerConversation(Conversation $customerConversation): static
+    {
+        if (!$this->customerConversations->contains($customerConversation)) {
+            $this->customerConversations->add($customerConversation);
+            $customerConversation->setCustomer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomerConversation(Conversation $customerConversation): static
+    {
+        if ($this->customerConversations->removeElement($customerConversation)) {
+            // set the owning side to null (unless already changed)
+            if ($customerConversation->getCustomer() === $this) {
+                $customerConversation->setCustomer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'firstname' => $this->getFirstname(),
+            'lastname' => $this->getLastname(),
+            'email' => $this->getEmail(),
+        ];
     }
 }
