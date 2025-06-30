@@ -51,6 +51,7 @@ class AppFixtures extends Fixture
                 ->setPower($item["power"])
                 ->setPrice($item["tarif"])
                 ->setAdress($item['address'])
+                ->setDefaultMessage("Bonjour ! Merci d'avoir réservé notre borne ! 😁")
                 ->setUser($availableUsers[$index] ?? $availableUsers[array_rand($availableUsers)])
             ;
             $manager->persist($station);

@@ -84,6 +84,9 @@ class Station
     #[Groups(['user:read', 'station:read'])]
     private ?string $description = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $defaultMessage = null;
+
     #[ORM\ManyToOne(inversedBy: 'stations')]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     #[Groups(['station:read'])]
@@ -206,6 +209,18 @@ class Station
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDefaultMessage(): ?string
+    {
+        return $this->defaultMessage;
+    }
+
+    public function setDefaultMessage(string $defaultMessage): static
+    {
+        $this->defaultMessage = $defaultMessage;
 
         return $this;
     }
