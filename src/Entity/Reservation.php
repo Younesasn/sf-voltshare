@@ -42,6 +42,7 @@ class Reservation
     private ?Car $car = null;
 
     #[ORM\Column]
+    #[Groups(['user:read', 'station:read'])]
     private ?float $price = null;
 
     public function getId(): ?int
