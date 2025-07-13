@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Controller\GetStarredStationController;
 use App\Controller\StarredStationController;
@@ -39,7 +40,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             controller: UnstarredStationController::class,
             security: "is_granted('IS_AUTHENTICATED_FULLY')",
         ),
-        new Post()
+        new Post(),
+        new Patch()
     ],
     normalizationContext: ['groups' => ['station:read']],
 )]
@@ -85,6 +87,7 @@ class Station
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['user:read', 'station:read'])]
     private ?string $defaultMessage = null;
 
     #[ORM\ManyToOne(inversedBy: 'stations')]
