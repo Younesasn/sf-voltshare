@@ -35,7 +35,7 @@ class CloseEndedConversationsCommand extends Command
     }
 
     $this->em->flush();
-    $output->writeln(count($conversations) . ' conversation(s) fermée(s).');
+    $output->writeln('[' . $now->format(DATE_RSS) . '] ' . count($conversations) . ' conversation(s) fermée(s).');
 
     return Command::SUCCESS;
   }
