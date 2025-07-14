@@ -20,10 +20,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
             uriTemplate: "/conversations",
             controller: ConversationController::class,
             output: Conversation::class,
-            normalizationContext: ['groups' => ['conversation:read']],
+            normalizationContext: ['groups' => 'conversation:read'],
         ),
         new Get(
-            normalizationContext: ['groups' => ['conversation:read']],
+            normalizationContext: ['groups' => 'conversation:read'],
         ),
         new Post()
     ]
@@ -34,33 +34,32 @@ class Conversation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['conversation:read'])]
+    #[Groups('conversation:read')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'hostConversations')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['conversation:read'])]
+    #[Groups('conversation:read')]
     private ?User $host = null;
 
     #[ORM\ManyToOne(inversedBy: 'customerConversations')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['conversation:read'])]
+    #[Groups('conversation:read')]
     private ?User $customer = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['conversation:read'])]
+    #[Groups('conversation:read')]
     private ?Reservation $reservation = null;
 
     #[ORM\Column]
-    #[Groups(['conversation:read'])]
     private ?bool $isOpen = null;
 
     /**
      * @var Collection<int, Message>
      */
     #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'conversation')]
-    #[Groups(['conversation:read'])]
+    #[Groups('conversation:read')]
     private Collection $messages;
 
     public function __construct()
@@ -109,6 +108,7 @@ class Conversation
         return $this;
     }
 
+    #[Groups('conversation:read')]
     public function isOpen(): ?bool
     {
         return $this->isOpen;
