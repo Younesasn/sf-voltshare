@@ -39,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write", 'station:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]

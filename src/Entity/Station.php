@@ -3,24 +3,31 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Controller\GetStarredStationController;
 use App\Controller\StarredStationController;
+use App\Controller\StationController;
 use App\Controller\UnstarredStationController;
 use App\Repository\StationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ApiResource(
     operations: [
         new Get(),
-        new GetCollection(),
+        new GetCollection(
+            paginationEnabled: false,
+            
+        ),
         new GetCollection(
             name: "Get Station Starred",
             uriTemplate: "/stations-starred",
@@ -40,11 +47,20 @@ use Symfony\Component\Serializer\Annotation\Groups;
             controller: UnstarredStationController::class,
             security: "is_granted('IS_AUTHENTICATED_FULLY')",
         ),
-        new Post(),
-        new Patch()
+        new Post(
+            uriTemplate: "/stations",
+            controller: StationController::class,
+            denormalizationContext: ['groups' => 'station:write'],
+            inputFormats: ['multipart' => ['multipart/form-data']],
+            input: false,
+            deserialize: false,
+        ),
+        new Patch(),
+        new Delete()
     ],
     normalizationContext: ['groups' => ['station:read']],
 )]
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: StationRepository::class)]
 class Station
 {
@@ -55,44 +71,51 @@ class Station
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?string $name = null;
 
     #[ORM\Column]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?float $latitude = null;
 
     #[ORM\Column]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?float $longitude = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?string $adress = null;
 
-    #[ORM\Column(length: 255)]
+    #[Vich\UploadableField(mapping: 'station', fileNameProperty: 'picture')]
+    #[Groups('station:write')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['user:read', 'station:read'])]
     private ?string $picture = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     #[ORM\Column]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?float $price = null;
 
     #[ORM\Column]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?float $power = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['user:read', 'station:read'])]
+    #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?string $defaultMessage = null;
 
     #[ORM\ManyToOne(inversedBy: 'stations')]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
-    #[Groups(['station:read'])]
+    #[Groups(['station:read', 'station:write'])]
     private ?User $user = null;
 
     /**
@@ -168,12 +191,29 @@ class Station
         return $this;
     }
 
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    #[Groups('station:write')]
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    public function setPicture(string $picture): static
+    public function setPicture(?string $picture): static
     {
         $this->picture = $picture;
 
