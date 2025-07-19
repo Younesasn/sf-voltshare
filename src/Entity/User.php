@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write", 'station:read'])]
     private ?string $email = null;
 
     /**
@@ -59,11 +59,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write", 'station:read'])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', "conversation:write", 'station:read'])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]

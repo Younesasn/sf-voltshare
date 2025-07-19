@@ -35,6 +35,7 @@ class Reservation
     private ?Station $station = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[Groups(['station:read'])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]

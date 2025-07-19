@@ -16,11 +16,11 @@ class Car
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read', "conversation:write"])]
+    #[Groups(['user:read', "conversation:write", 'station:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read'])]
+    #[Groups(['user:read', 'station:read'])]
     private ?string $model = null;
 
     #[ORM\ManyToOne(inversedBy: 'cars')]
