@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\ExportDataController;
 use App\Controller\GetStarredStationController;
 use App\Controller\StarredStationController;
 use App\Controller\StationController;
@@ -24,9 +25,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiResource(
     operations: [
         new Get(),
+        new Get(
+            name: "Export Data Station",
+            uriTemplate: "/stations/{id}/export",
+            controller: ExportDataController::class
+        ),
         new GetCollection(
             paginationEnabled: false,
-            
         ),
         new GetCollection(
             name: "Get Station Starred",
