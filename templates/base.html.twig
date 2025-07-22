@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Welcome!
+			{% endblock %}
+		</title>
+			<style>
+				@page {
+					size: A4;
+					margin: 20mm;
+				}
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				.container {
+					min-height: 100vh;
+					height: 100vh;
+					box-sizing: border-box;
+				}
+			</style>
+		{% block stylesheets %}
+		{% endblock %}
+	</head>
+	<body> {% block header %}{% endblock %}{% block main %}{% endblock %}
+		</body>
+	</html>

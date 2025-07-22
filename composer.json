@@ -19,6 +19,7 @@
         "nelmio/cors-bundle": "^2.5",
         "phpdocumentor/reflection-docblock": "^5.6",
         "phpstan/phpdoc-parser": "^2.1",
+        "pontedilana/weasyprint-bundle": "*",
         "scheb/2fa-bundle": "^7.7",
         "scheb/2fa-email": "^7.7",
         "stripe/stripe-php": "^17.3",
@@ -42,6 +43,8 @@
         "symfony/validator": "6.4.*",
         "symfony/yaml": "6.4.*",
         "tilleuls/forgot-password-bundle": "^2.0",
+        "twig/extra-bundle": "^3.21",
+        "twig/intl-extra": "^3.21",
         "vich/uploader-bundle": "^2.7"
     },
     "config": {

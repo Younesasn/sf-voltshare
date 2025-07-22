@@ -1,0 +1,181 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+	<style>
+		@page {
+			size: A4;
+			margin: 0;
+		}
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			margin: 0;
+			padding: 0;
+			background: #fff;
+			color: #222;
+		}
+		.container {
+			width: 100%;
+			max-width: 900px;
+			margin: 0 auto;
+			min-height: 100vh;
+			box-sizing: border-box;
+			padding: 32px 36px 28px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+		}
+		.section {
+			margin-bottom: 40px;
+		}
+		.section:last-child {
+			margin-bottom: 0;
+		}
+		.header {
+			margin-bottom: 40px;
+		}
+		.title {
+			font-size: 2rem;
+			font-weight: bold;
+			margin-bottom: 0.5rem;
+		}
+		.subtitle {
+			font-size: 1.25rem;
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+		}
+		.right {
+			display: flex;
+			justify-content: flex-end;
+			margin-bottom: 32px;
+		}
+		.text-right {
+			text-align: right;
+		}
+		.font-semibold {
+			font-weight: 600;
+		}
+		.mb-1 {
+			margin-bottom: 0.25rem;
+		}
+		.mb-2 {
+			margin-bottom: 0.5rem;
+		}
+		.total {
+			text-align: right;
+			font-weight: bold;
+			margin-top: 12px;
+		}
+		.text-sm {
+			font-size: 0.95rem;
+		}
+		.text-gray-600 {
+			color: #4B5563;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 0;
+		}
+		th,
+		td {
+			border: 1px solid #ccc;
+			padding: 8px 4px;
+			text-align: left;
+		}
+		th {
+			background: #f3f4f6;
+			font-weight: 600;
+		}
+		.container,
+		.section,
+		table,
+		tr,
+		td,
+		th {
+			page-break-inside: avoid;
+			break-inside: avoid;
+		}
+	</style>
+{% endblock %}
+
+{% block main %}
+	{% set interval = reservation.endTime|date('U') - reservation.startTime|date('U') %}
+	{% set hours = (interval / 3600)|round(0, 'floor') %}
+	<section class="container">
+		<section class="header">
+			<h1 class="title">Voltshare Inc.</h1>
+			<p>44 rue Paul Krüger, Villeurbanne 69266</p>
+			<p>Tél : 01 02 03 04 05</p>
+			<p>Email : contact@voltshare.com</p>
+		</section>
+
+		<div class="right">
+			<div>
+				<h3 class="font-semibold mb-1">{{reservation.user.firstname}}
+					{{reservation.user.lastname}}</h3>
+				<p>{{reservation.user.adress}}</p>
+				<p>{{reservation.user.email}}</p>
+				<p>{{reservation.user.tel}}</p>
+			</div>
+		</div>
+		<div class="section">
+			<h2 class="subtitle mb-2">Facture</h2>
+			<p>
+				<strong>Numéro de facture :</strong>
+				FAC-{{timestamp}}</p>
+			<p>
+				<strong>Date d'émission :</strong>
+				{{date | date('d/m/Y H:i') }}</p>
+		</div>
+		<div class="section">
+			<h3 class="font-semibold mb-1">Détails de la réservation</h3>
+			<p>
+				<strong>Borne réservée :</strong>
+				{{reservation.station.name}}</p>
+			<p>
+				<strong>Date de début :</strong>
+				{{reservation.startTime | date('d/m/Y H:i') }}</p>
+			<p>
+				<strong>Date de fin :</strong>
+				{{reservation.endTime | date('d/m/Y H:i') }}</p>
+			<p>
+				<strong>Durée :</strong>
+				{{ hours }}
+				heure{{ hours > 1 ? 's' : '' }}</p>
+		</div>
+		<div class="section">
+			<h3 class="font-semibold mb-1">Détail du paiement</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Description</th>
+						<th>Véhicule</th>
+						<th>Tarif horaire</th>
+						<th>Nombre d'heures</th>
+						<th>Taxes</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Location borne
+							{{ hours }}h</td>
+						<td>{{reservation.car.model}}</td>
+						<td>{{reservation.station.price}}
+							€</td>
+						<td>{{ hours }}</td>
+						<td>0.7 €</td>
+						<td>{{reservation.price}}
+							€</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="total">Total payé :
+				{{reservation.price}}
+				€ TTC</p>
+		</div>
+		<div class="section text-sm text-gray-600">
+			<p>Merci pour votre confiance et à bientôt sur Voltshare !</p>
+		</div>
+	</section>
+{% endblock %}

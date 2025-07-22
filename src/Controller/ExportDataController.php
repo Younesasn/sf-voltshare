@@ -28,7 +28,7 @@ class ExportDataController extends AbstractController
     return $text;
   }
 
-  public function __invoke(Station $station, NormalizerInterface $normailzer, MailerInterface $mailer)
+  public function __invoke(Station $station, MailerInterface $mailer)
   {
     $exportDir = $this->getParameter('kernel.project_dir') . '/var/exports';
     Excel::setTempDir($exportDir);

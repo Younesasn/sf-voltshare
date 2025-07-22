@@ -99,6 +99,9 @@
             "config/packages/nelmio_cors.yaml"
         ]
     },
+    "pontedilana/weasyprint-bundle": {
+        "version": "2.4.0"
+    },
     "scheb/2fa-bundle": {
         "version": "7.10",
         "recipe": {
@@ -286,6 +289,9 @@
             "config/packages/coop_tilleuls_forgot_password.yaml",
             "config/routes/coop_tilleuls_forgot_password.yaml"
         ]
+    },
+    "twig/extra-bundle": {
+        "version": "v3.21.0"
     },
     "vich/uploader-bundle": {
         "version": "2.7",
