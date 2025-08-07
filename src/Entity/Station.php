@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
@@ -63,9 +65,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
         new Patch(),
         new Delete()
     ],
-    normalizationContext: ['groups' => ['station:read']],
+    normalizationContext: ['groups' => 'station:read'],
 )]
 #[Vich\Uploadable]
+#[ApiFilter(BooleanFilter::class, properties: ['isActive'])]
 #[ORM\Entity(repositoryClass: StationRepository::class)]
 class Station
 {
@@ -117,6 +120,9 @@ class Station
     #[ORM\Column(type: Types::TEXT)]
     #[Groups(['user:read', 'station:read', 'station:write'])]
     private ?string $defaultMessage = null;
+
+    #[ORM\Column]
+    private ?bool $isActive = null;
 
     #[ORM\ManyToOne(inversedBy: 'stations')]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
@@ -269,6 +275,19 @@ class Station
     public function setDefaultMessage(string $defaultMessage): static
     {
         $this->defaultMessage = $defaultMessage;
+
+        return $this;
+    }
+
+    #[Groups(['user:read', 'station:read'])]
+    public function isActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): static
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }
