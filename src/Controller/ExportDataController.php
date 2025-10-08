@@ -10,7 +10,6 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\File;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ExportDataController extends AbstractController
 {
