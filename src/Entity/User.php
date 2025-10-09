@@ -39,11 +39,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read', 'conversation:read', "conversation:write", 'station:read'])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write', 'station:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write", 'station:read'])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write', 'station:read'])]
     private ?string $email = null;
 
     /**
@@ -59,19 +59,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write", 'station:read'])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write', 'station:read'])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write", 'station:read'])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write', 'station:read'])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write'])]
     private ?string $adress = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write'])]
     private ?string $tel = null;
 
     #[ORM\Column(length: 6, nullable: true)]
@@ -81,35 +81,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
      * @var Collection<int, Car>
      */
     #[ORM\OneToMany(targetEntity: Car::class, mappedBy: 'user')]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write'])]
     private Collection $cars;
 
     /**
      * @var Collection<int, Station>
      */
     #[ORM\OneToMany(targetEntity: Station::class, mappedBy: 'user')]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write'])]
     private Collection $stations;
 
     /**
      * @var Collection<int, Station>
      */
     #[ORM\ManyToMany(targetEntity: Station::class, inversedBy: 'usersStarred')]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write'])]
     private Collection $stationStarred;
 
     /**
      * @var Collection<int, Reservation>
      */
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'user')]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write'])]
     private Collection $reservations;
 
     #[ORM\Column]
     private ?bool $isDeleted = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['user:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'conversation:read', 'conversation:write'])]
     private ?string $avatar = null;
 
     /**
@@ -192,22 +192,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
         return $this;
     }
 
-    function getEmailAuthCode(): ?string
+    public function getEmailAuthCode(): ?string
     {
         return $this->code;
     }
 
-    function setEmailAuthCode(string $authCode): void
+    public function setEmailAuthCode(string $authCode): void
     {
         $this->code = $authCode;
     }
 
-    function getEmailAuthRecipient(): string
+    public function getEmailAuthRecipient(): string
     {
         return $this->email;
     }
 
-    function isEmailAuthEnabled(): bool
+    public function isEmailAuthEnabled(): bool
     {
         return true;
     }

@@ -9,11 +9,12 @@ use Symfony\Component\Security\Core\Security;
 
 class MeController extends AbstractController
 {
-  public function __invoke(Security $security): JsonResponse
-  {
-    if(!$security->getUser()) {
-      return new JsonResponse(['message' => 'User non trouvé !'], Response::HTTP_UNAUTHORIZED);
+    public function __invoke(Security $security): JsonResponse
+    {
+        if (!$security->getUser()) {
+            return new JsonResponse(['message' => 'User non trouvé !'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        return $this->json($security->getUser(), 200, [], ['groups' => 'user:read']);
     }
-    return $this->json($security->getUser(), 200, [], ['groups' => 'user:read']);
-  }
 }

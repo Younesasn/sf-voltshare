@@ -13,15 +13,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(operations: [
     new GetCollection(
-        name: "Get messages between 2 Users",
-        uriTemplate: "/messages/{id}",
+        name: 'Get messages between 2 Users',
+        uriTemplate: '/messages/{id}',
         controller: MessageController::class,
         requirements: ['id' => '\d+'],
         output: Message::class
     ),
     new Post(
-        denormalizationContext: ["groups" => "conversation:write"]
-    )
+        denormalizationContext: ['groups' => 'conversation:write']
+    ),
 ])]
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 class Message
@@ -29,30 +29,30 @@ class Message
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['conversation:read', "conversation:write"])]
+    #[Groups(['conversation:read', 'conversation:write'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['conversation:read', "conversation:write"])]
+    #[Groups(['conversation:read', 'conversation:write'])]
     private ?User $sender = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['conversation:read', "conversation:write"])]
+    #[Groups(['conversation:read', 'conversation:write'])]
     private ?User $receiver = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['conversation:read', "conversation:write"])]
+    #[Groups(['conversation:read', 'conversation:write'])]
     private ?string $content = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['conversation:read', "conversation:write"])]
+    #[Groups(['conversation:read', 'conversation:write'])]
     private ?\DateTimeInterface $sendAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["conversation:write"])]
+    #[Groups(['conversation:write'])]
     private ?Conversation $conversation = null;
 
     public function getId(): ?int

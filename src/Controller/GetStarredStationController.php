@@ -9,15 +9,16 @@ use Symfony\Component\Security\Core\Security;
 
 class GetStarredStationController extends AbstractController
 {
-  public function __invoke(Security $security): JsonResponse
-  {
-    $user = $security->getUser();
+    public function __invoke(Security $security): JsonResponse
+    {
+        $user = $security->getUser();
 
-    if (!$user) {
-      return $this->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
+        if (!$user) {
+            return $this->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $stations = $user->getStationStarred();
+
+        return $this->json($stations);
     }
-
-    $stations = $user->getStationStarred();
-    return $this->json( $stations);
-  }
 }

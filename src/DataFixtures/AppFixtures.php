@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
 
         $users = [];
         $users[] = $user;
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 30; ++$i) {
             $user = new User();
             $user->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)
@@ -39,17 +39,17 @@ class AppFixtures extends Fixture
         }
         $availableUsers = $users;
         shuffle($availableUsers);
-        $jsonData = file_get_contents(__DIR__ . '/stations.json');
+        $jsonData = file_get_contents(__DIR__.'/stations.json');
         $stations = json_decode($jsonData, true);
         foreach ($stations as $index => $item) {
             $station = new Station();
-            $station->setName($item["name"])
-                ->setDescription($item["description"])
-                ->setPicture($item["image"])
-                ->setLatitude($item["latitude"])
-                ->setLongitude($item["longitude"])
-                ->setPower($item["power"])
-                ->setPrice($item["tarif"])
+            $station->setName($item['name'])
+                ->setDescription($item['description'])
+                ->setPicture($item['image'])
+                ->setLatitude($item['latitude'])
+                ->setLongitude($item['longitude'])
+                ->setPower($item['power'])
+                ->setPrice($item['tarif'])
                 ->setAdress($item['address'])
                 ->setDefaultMessage("Bonjour ! Merci d'avoir réservé notre borne ! 😁")
                 ->setIsActive(true)
@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
         }
 
         $car = new Car();
-        $car->setModel("Anonymous");
+        $car->setModel('Anonymous');
         $manager->persist($car);
 
         foreach ($users as $user) {
@@ -103,7 +103,7 @@ class AppFixtures extends Fixture
                 'Lucid Air',
                 'Polestar 2',
                 'Volvo XC40 Recharge',
-                'Volvo C40 Recharge'
+                'Volvo C40 Recharge',
             ]))
                 ->setUser($user);
             $manager->persist($car);

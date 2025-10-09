@@ -16,8 +16,8 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ApiResource(
     operations: [
         new GetCollection(
-            name: "Get all conversations",
-            uriTemplate: "/conversations",
+            name: 'Get all conversations',
+            uriTemplate: '/conversations',
             controller: ConversationController::class,
             output: Conversation::class,
             normalizationContext: ['groups' => 'conversation:read'],
@@ -25,7 +25,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
         new Get(
             normalizationContext: ['groups' => 'conversation:read'],
         ),
-        new Post()
+        new Post(),
     ]
 )]
 #[ORM\Entity(repositoryClass: ConversationRepository::class)]

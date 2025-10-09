@@ -9,8 +9,8 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class TwoFactorAuthenticationRequiredHandler implements AuthenticationRequiredHandlerInterface
 {
-  public function onAuthenticationRequired(Request $request, TokenInterface $token): Response
-  {
-    return new Response('{"error": "access_denied", "two_factor_complete": false}');
-  }
+    public function onAuthenticationRequired(Request $request, TokenInterface $token): Response
+    {
+        return new Response('{"error": "access_denied", "two_factor_complete": false}');
+    }
 }

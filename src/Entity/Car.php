@@ -16,7 +16,7 @@ class Car
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read', "conversation:write", 'station:read'])]
+    #[Groups(['user:read', 'conversation:write', 'station:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]

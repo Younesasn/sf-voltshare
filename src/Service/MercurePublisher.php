@@ -7,18 +7,18 @@ use Symfony\Component\Mercure\Update;
 
 class MercurePublisher
 {
-  public function __construct(
-    private readonly HubInterface $hub
-  ) {
-  }
+    public function __construct(
+        private readonly HubInterface $hub,
+    ) {
+    }
 
-  public function publish(string $topic, array $data): void
-  {
-    $update = new Update(
-      $topic,
-      json_encode($data)
-    );
+    public function publish(string $topic, array $data): void
+    {
+        $update = new Update(
+            $topic,
+            json_encode($data)
+        );
 
-    $this->hub->publish($update);
-  }
+        $this->hub->publish($update);
+    }
 }

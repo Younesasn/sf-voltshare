@@ -28,34 +28,34 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     operations: [
         new Get(),
         new Get(
-            name: "Export Data Station",
-            uriTemplate: "/stations/{id}/export",
+            name: 'Export Data Station',
+            uriTemplate: '/stations/{id}/export',
             controller: ExportDataController::class
         ),
         new GetCollection(
             paginationEnabled: false,
         ),
         new GetCollection(
-            name: "Get Station Starred",
-            uriTemplate: "/stations-starred",
+            name: 'Get Station Starred',
+            uriTemplate: '/stations-starred',
             controller: GetStarredStationController::class,
             security: "is_granted('IS_AUTHENTICATED_FULLY')",
             output: Station::class,
         ),
         new Post(
             name: 'Add Favourite Station',
-            uriTemplate: "/stations/{id}/starred",
+            uriTemplate: '/stations/{id}/starred',
             controller: StarredStationController::class,
             security: "is_granted('IS_AUTHENTICATED_FULLY')",
         ),
         new Post(
-            name: "Remove Favourite Station",
-            uriTemplate: "/stations/{id}/unstarred",
+            name: 'Remove Favourite Station',
+            uriTemplate: '/stations/{id}/unstarred',
             controller: UnstarredStationController::class,
             security: "is_granted('IS_AUTHENTICATED_FULLY')",
         ),
         new Post(
-            uriTemplate: "/stations",
+            uriTemplate: '/stations',
             controller: StationController::class,
             denormalizationContext: ['groups' => 'station:write'],
             inputFormats: ['multipart' => ['multipart/form-data']],
@@ -63,7 +63,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
             deserialize: false,
         ),
         new Patch(),
-        new Delete()
+        new Delete(),
     ],
     normalizationContext: ['groups' => 'station:read'],
 )]
@@ -75,7 +75,7 @@ class Station
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read', 'station:read', "conversation:write"])]
+    #[Groups(['user:read', 'station:read', 'conversation:write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -125,7 +125,7 @@ class Station
     private ?bool $isActive = null;
 
     #[ORM\ManyToOne(inversedBy: 'stations')]
-    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     #[Groups(['station:read', 'station:write'])]
     private ?User $user = null;
 

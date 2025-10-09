@@ -9,8 +9,8 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerI
 
 class TwoFactorAuthenticationFailureHandler implements AuthenticationFailureHandlerInterface
 {
-  public function onAuthenticationFailure(Request $request, AuthenticationException $exception):JsonResponse
-  {
-    return new JsonResponse(["error" => "Code invalide", "two_factor_complete" => false]);
-  }
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): JsonResponse
+    {
+        return new JsonResponse(['error' => 'Code invalide', 'two_factor_complete' => false]);
+    }
 }

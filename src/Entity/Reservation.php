@@ -15,7 +15,7 @@ class Reservation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:read', 'station:read', 'conversation:read', "conversation:write"])]
+    #[Groups(['user:read', 'station:read', 'conversation:read', 'conversation:write'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
