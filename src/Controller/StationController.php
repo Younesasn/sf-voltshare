@@ -43,6 +43,7 @@ class StationController extends AbstractController
     $station->setDescription($description);
     $station->setDefaultMessage($defaultMessage);
     $station->setUser($security->getUser());
+    $station->setIsActive(true);
 
     if ($imageFile) {
       $station->setImageFile($imageFile);
