@@ -40,10 +40,12 @@ class ExportDataController extends AbstractController
         $excel = Excel::create([$station->getName()]);
         $sheet = $excel->getSheet();
 
+        $datetime = '@datetime';
+
         $sheet->writeHeader([
-            'Jour de la réservation' => '@datetime',
-            'Début de la réservation' => '@datetime',
-            'Fin de la réservation' => '@datetime',
+            'Jour de la réservation' => $datetime,
+            'Début de la réservation' => $datetime,
+            'Fin de la réservation' => $datetime,
             'Client' => '@string',
             'Voiture du client' => '@string',
             'Prix payé' => '@money',
@@ -70,10 +72,10 @@ class ExportDataController extends AbstractController
         $excel->save($filepath);
 
         $email = (new Email())->addPart(new DataPart(new File($filepath)))
-          ->from('noreply@voltshare.com')
-          ->to($reservation->getUser()->getEmail())
-          ->subject('Vos données en format Excel')
-          ->text('Vous trouverez ci-joint le fichier demandé sur Voltshare.');
+            ->from('noreply@voltshare.com')
+            ->to($reservation->getUser()->getEmail())
+            ->subject('Vos données en format Excel')
+            ->text('Vous trouverez ci-joint le fichier demandé sur Voltshare.');
         $mailer->send($email);
 
         unlink($filepath);
