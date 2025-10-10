@@ -99,7 +99,9 @@
         "doctrine/doctrine-fixtures-bundle": "^4.1",
         "fakerphp/faker": "^1.24",
         "friendsofphp/php-cs-fixer": "^3.88",
+        "phpunit/phpunit": "^12.4",
         "symfony/maker-bundle": "^1.62",
+        "symfony/phpunit-bridge": "^7.3",
         "symfony/stopwatch": "6.4.*",
         "symfony/web-profiler-bundle": "6.4.*"
     }
