@@ -1,0 +1,49 @@
+name: test
+on: ["push", "pull_request"]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    services:
+      database:
+        image: mariadb:10.7.3
+        env:
+          MARIADB_USER: root
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: voltshare-test
+        ports:
+          - 3306/tcp
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+          tools: composer:v2
+
+      - name: Setup Cache
+        run: echo "COMPOSER_CACHE_DIR=$(composer config cache-dir)" >> $GITHUB_ENV
+
+      - name: Caching deps
+        uses: actions/cache@v4
+        with:
+          path: ${{env.COMPOSER_CACHE_DIR}}
+          key: php8.4-composer-${{hashFiles('**/composer.json')}}
+          restore-keys: php8.4-composer-latest-
+
+      - name: Update composer
+        run: composer self-update
+
+      - name: install deps
+        run: composer install --prefer-dist --no-interaction --no-progress --optimize-autoloader
+
+      - name: Prepare database
+        run: sudo systemctl start mysql
+
+      - name: Test
+        run: composer app:test
+        env:
+          APP_ENV: test
+          DATABASE_URL: mysql://root:roo@127.0.0.1:${{job.services.database.ports['3306']}}/voltshare
