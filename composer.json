@@ -108,6 +108,7 @@
     "fakerphp/faker": "^1.24",
     "friendsofphp/php-cs-fixer": "^3.88",
     "justinrainbow/json-schema": "^6.5",
+    "phpstan/phpstan": "^2.1",
     "phpunit/phpunit": "^12.4",
     "symfony/maker-bundle": "^1.62",
     "symfony/phpunit-bridge": "^7.3",

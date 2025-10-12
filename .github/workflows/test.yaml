@@ -10,7 +10,7 @@ jobs:
         env:
           MARIADB_USER: root
           MARIADB_ROOT_PASSWORD: root
-          MARIADB_DATABASE: voltshare-test
+          MARIADB_DATABASE: voltshare
           MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "no"
         ports:
           - 3306/tcp
