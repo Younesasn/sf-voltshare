@@ -3,4 +3,4 @@ weasyprint:
     enabled: true
     binary: "%env(WEASYPRINT_PATH)%"
     options: []
-    process_timeout: null
+  process_timeout: null
