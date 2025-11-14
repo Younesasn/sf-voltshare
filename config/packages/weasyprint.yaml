@@ -2,4 +2,5 @@ weasyprint:
   pdf:
     enabled: true
     binary: "%env(WEASYPRINT_PATH)%"
-    options: ["process_timeout": null]
+    options: []
+  timeout: false
