@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Station;
 use avadim\FastExcelWriter\Excel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Part\DataPart;
@@ -12,6 +13,12 @@ use Symfony\Component\Mime\Part\File;
 
 class ExportDataController extends AbstractController
 {
+    public function __construct(
+        #[Autowire('%env(MAILER_FROM)%')]
+        private readonly string $mailerFrom,
+    ) {
+    }
+
     /**
      * Helper pour "slugifier" (remplacer espaces/accents par _).
      *
@@ -72,7 +79,7 @@ class ExportDataController extends AbstractController
         $excel->save($filepath);
 
         $email = (new Email())->addPart(new DataPart(new File($filepath)))
-            ->from('noreply@voltshare.com')
+            ->from($this->mailerFrom)
             ->to($reservation->getUser()->getEmail())
             ->subject('Vos données en format Excel')
             ->text('Vous trouverez ci-joint le fichier demandé sur Voltshare.');

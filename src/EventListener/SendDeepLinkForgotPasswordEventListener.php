@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use CoopTilleuls\ForgotPasswordBundle\Event\CreateTokenEvent;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -10,8 +11,11 @@ use Symfony\Component\Mime\Email;
 #[AsEventListener(CreateTokenEvent::class, method: 'onCreateToken')]
 class SendDeepLinkForgotPasswordEventListener
 {
-    public function __construct(private readonly MailerInterface $mailer)
-    {
+    public function __construct(
+        private readonly MailerInterface $mailer,
+        #[Autowire('%env(MAILER_FROM)%')]
+        private readonly string $mailerFrom,
+    ) {
     }
 
     public function onCreateToken(CreateTokenEvent $event): void
@@ -21,7 +25,7 @@ class SendDeepLinkForgotPasswordEventListener
         $deepLink = sprintf('exp://127.0.0.1:8081/--/forgot-password/reset/%s', $passwordToken->getToken());
 
         $message = (new Email())
-          ->from('noreply@voltshare.com')
+          ->from($this->mailerFrom)
           ->to($user->getEmail())
           ->subject('Reset your password')
           ->html(sprintf(

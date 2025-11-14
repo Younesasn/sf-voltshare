@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Repository\MessageRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Security\Core\Security;
 
 class MessageController extends AbstractController
 {

@@ -22,6 +22,8 @@ class GenerateInvoicePdfListener
         private Environment $twig,
         #[Autowire('%kernel.project_dir%/var/pdfs')]
         private $exportDir,
+        #[Autowire('%env(MAILER_FROM)%')]
+        private string $mailerFrom,
     ) {
     }
 
@@ -46,7 +48,7 @@ class GenerateInvoicePdfListener
         ]), $filepath);
 
         $email = (new Email())->addPart(new DataPart(new File($filepath)))
-          ->from('noreply@voltshare.com')
+          ->from($this->mailerFrom)
           ->to($reservation->getUser()->getEmail())
           ->subject('Votre facture')
           ->text('Vous trouverez ci-joint votre facture pour votre réservation.');

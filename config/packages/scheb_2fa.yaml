@@ -2,7 +2,7 @@
 scheb_two_factor:
   email:
     enabled: true
-    sender_email: noreply@volshare.com
+    sender_email: '%env(MAILER_FROM)%'
     sender_name: Volshare A2F
     digits: 6
   security_tokens:

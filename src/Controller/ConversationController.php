@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Repository\ConversationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Security\Core\Security;
 
 class ConversationController extends AbstractController
 {

@@ -1,0 +1,552 @@
+[
+  {
+    "latitude": 45.74519292993862,
+    "longitude": 4.854484694734533,
+    "power": 7.4,
+    "tarif": 4.5,
+    "name": "IZIVIA Grand Lyon - Vénissieux",
+    "address": "1 rue de la République",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.743741067963704,
+    "longitude": 4.883059683930613,
+    "power": 3.7,
+    "tarif": 2.5,
+    "name": "Powerdot - Saint-Fons",
+    "address": "1 rue de la République",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.783877845070556,
+    "longitude": 4.860547559339414,
+    "power": 7,
+    "tarif": 4.0,
+    "name": "IZIVIA Grand Lyon - Feyzin",
+    "address": "1 rue de la République",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.76141210025036,
+    "longitude": 4.874351252172824,
+    "power": 2.3,
+    "tarif": 1.9,
+    "name": "Carrefour Vénissieux - Vénissieux",
+    "address": "1 rue de la République",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.77757483744476,
+    "longitude": 4.884841976899503,
+    "power": 22,
+    "tarif": 5.6,
+    "name": "Lyon 8ème",
+    "address": "1 rue de la République",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7597,
+    "longitude": 4.8422,
+    "power": 11,
+    "tarif": 3.9,
+    "name": "VoltShare Lyon - Bellecour",
+    "address": "2 Place Bellecour, 69002 Lyon",
+    "description": "Borne située au cœur de la place Bellecour, idéale pour les courts arrêts.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.764043,
+    "longitude": 4.835659,
+    "power": 22,
+    "tarif": 6.0,
+    "name": "GreenCharge Lyon - Hôtel de Ville",
+    "address": "Place de la Comédie, 69001 Lyon",
+    "description": "Chargez votre véhicule pendant que vous explorez le centre historique.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7754,
+    "longitude": 4.8055,
+    "power": 3.7,
+    "tarif": 2.0,
+    "name": "E-Park Lyon - Gorge de Loup",
+    "address": "10 Rue de la Navigation, 69009 Lyon",
+    "description": "Idéal pour les résidents de Vaise, parking gratuit 1h.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7485,
+    "longitude": 4.8467,
+    "power": 7.4,
+    "tarif": 3.5,
+    "name": "VoltSpot Lyon - Perrache",
+    "address": "1 Cours de Verdun, 69002 Lyon",
+    "description": "Proche de la gare de Perrache, accessible 24/7.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.762,
+    "longitude": 4.88,
+    "power": 11,
+    "tarif": 4.2,
+    "name": "Lyon Est - Bron",
+    "address": "Avenue Franklin Roosevelt, 69500 Bron",
+    "description": "Borne en périphérie Est de Lyon, parking sécurisé.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7578,
+    "longitude": 4.832,
+    "power": 11,
+    "tarif": 4.0,
+    "name": "Bump - Place Bellecour",
+    "address": "2 Place Bellecour, 69002 Lyon",
+    "description": "Chargez votre véhicule pendant que vous explorez le centre historique.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.764,
+    "longitude": 4.8357,
+    "power": 22,
+    "tarif": 5.5,
+    "name": "GreenCharge - Hôtel de Ville",
+    "address": "Place de la Comédie, 69001 Lyon",
+    "description": "Borne située près de l’Hôtel de Ville, accessible 24/7.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7754,
+    "longitude": 4.8055,
+    "power": 3.7,
+    "tarif": 2.0,
+    "name": "E-Park - Gorge de Loup",
+    "address": "10 Rue de la Navigation, 69009 Lyon",
+    "description": "Idéal pour les résidents de Vaise, parking gratuit 1h.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.762,
+    "longitude": 4.88,
+    "power": 11,
+    "tarif": 4.2,
+    "name": "Lyon Est - Bron",
+    "address": "Avenue Franklin Roosevelt, 69500 Bron",
+    "description": "Borne en périphérie Est de Lyon, parking sécurisé.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.769,
+    "longitude": 4.8312,
+    "power": 11,
+    "tarif": 4.0,
+    "name": "VoltAccess - Croix-Rousse",
+    "address": "Place de la Croix-Rousse, 69004 Lyon",
+    "description": "Borne centrale sur le plateau de la Croix-Rousse.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7421,
+    "longitude": 4.8233,
+    "power": 7.4,
+    "tarif": 3.2,
+    "name": "FastCharge - Gerland",
+    "address": "Rue Challemel-Lacour, 69007 Lyon",
+    "description": "Recharge rapide à deux pas du stade de Gerland.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7532,
+    "longitude": 4.8581,
+    "power": 22,
+    "tarif": 5.9,
+    "name": "VoltHub - Part-Dieu",
+    "address": "Rue de Bonnel, 69003 Lyon",
+    "description": "Rechargez pendant votre shopping à la Part-Dieu.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.756,
+    "longitude": 4.8712,
+    "power": 11,
+    "tarif": 3.8,
+    "name": "E-Spot - Montchat",
+    "address": "Cours Eugénie, 69003 Lyon",
+    "description": "Borne résidentielle dans le quartier Montchat.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7813,
+    "longitude": 4.879,
+    "power": 7,
+    "tarif": 2.8,
+    "name": "EcoVolt - Bron Université",
+    "address": "Avenue Pierre Mendès-France, 69500 Bron",
+    "description": "Près du campus Lyon 2 et de l’université Lyon 1.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7365,
+    "longitude": 4.8702,
+    "power": 11,
+    "tarif": 3.6,
+    "name": "ChargeX - Moulin à Vent",
+    "address": "Rue Ernest Renan, 69200 Vénissieux",
+    "description": "Borne rapide en zone résidentielle calme.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7835,
+    "longitude": 4.8492,
+    "power": 3.7,
+    "tarif": 2.4,
+    "name": "UrbanVolt - Caluire",
+    "address": "Chemin de Fond-Rose, 69300 Caluire-et-Cuire",
+    "description": "Borne à l’entrée du parc de la Tête d’Or côté nord.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7688,
+    "longitude": 4.8877,
+    "power": 22,
+    "tarif": 5.8,
+    "name": "GreenFlash - Vinatier",
+    "address": "Boulevard Pinel, 69500 Bron",
+    "description": "Accès direct depuis l’hôpital du Vinatier.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7721,
+    "longitude": 4.8329,
+    "power": 11,
+    "tarif": 4.3,
+    "name": "LyonCharge - Serin",
+    "address": "Quai de Serin, 69004 Lyon",
+    "description": "Borne au bord de la Saône avec belle vue sur la ville.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7405,
+    "longitude": 4.8501,
+    "power": 7.4,
+    "tarif": 3.5,
+    "name": "VoltStation - Jean Macé",
+    "address": "Rue Chevreul, 69007 Lyon",
+    "description": "Accès direct à la gare Jean Macé et aux commerces.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.791,
+    "longitude": 4.845,
+    "power": 11,
+    "tarif": 3.9,
+    "name": "QuickVolt - Rillieux-la-Pape",
+    "address": "Rue Ampère, 69140 Rillieux-la-Pape",
+    "description": "Idéalement située dans la zone industrielle de Rillieux.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7132,
+    "longitude": 4.9011,
+    "power": 3.7,
+    "tarif": 2.2,
+    "name": "VoltPoint - Corbas",
+    "address": "Avenue des Taillis, 69960 Corbas",
+    "description": "Borne discrète mais efficace à l’entrée du village.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7544,
+    "longitude": 4.7958,
+    "power": 22,
+    "tarif": 6.0,
+    "name": "ECharge - Tassin",
+    "address": "Place Vauboin, 69160 Tassin-la-Demi-Lune",
+    "description": "À 5 minutes du centre de Tassin, parking gratuit 30 min.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7351,
+    "longitude": 4.8324,
+    "power": 7.4,
+    "tarif": 3.4,
+    "name": "GreenVolt - Sainte-Foy-lès-Lyon",
+    "address": "Chemin de Montray, 69110 Sainte-Foy-lès-Lyon",
+    "description": "Borne dans un quartier calme et résidentiel.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7811,
+    "longitude": 4.8252,
+    "power": 11,
+    "tarif": 4.1,
+    "name": "EcoCharge - Écully",
+    "address": "Avenue du Bon Pasteur, 69130 Écully",
+    "description": "À proximité du campus EM Lyon et du centre commercial.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.6999,
+    "longitude": 4.82,
+    "power": 3.7,
+    "tarif": 2.5,
+    "name": "VoltEasy - Oullins",
+    "address": "Rue Pierre Semard, 69600 Oullins",
+    "description": "Pratique et proche de la future ligne de métro B.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7672,
+    "longitude": 4.8509,
+    "power": 11,
+    "tarif": 4.0,
+    "name": "FlashCharge - Saxe-Gambetta",
+    "address": "Avenue Jean Jaurès, 69007 Lyon",
+    "description": "Recharge express à 2 pas du métro Saxe-Gambetta.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7488,
+    "longitude": 4.8441,
+    "power": 7,
+    "tarif": 3.2,
+    "name": "VoltCity - Perrache Sud",
+    "address": "Rue Delandine, 69002 Lyon",
+    "description": "Zone dynamique proche de Confluence.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7575,
+    "longitude": 4.8293,
+    "power": 22,
+    "tarif": 6.2,
+    "name": "Charge+ - Victor Hugo",
+    "address": "Rue Victor Hugo, 69002 Lyon",
+    "description": "Rechargez en centre-ville sans stress.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7699,
+    "longitude": 4.8017,
+    "power": 11,
+    "tarif": 4.2,
+    "name": "VoltUp - Champvert",
+    "address": "Rue de Champvert, 69009 Lyon",
+    "description": "Borne résidentielle idéale pour les habitants du 9e.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7653,
+    "longitude": 4.8815,
+    "power": 7.4,
+    "tarif": 3.0,
+    "name": "GreenLine - Mermoz",
+    "address": "Avenue Jean Mermoz, 69008 Lyon",
+    "description": "À proximité directe du métro D.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7531,
+    "longitude": 4.8105,
+    "power": 3.7,
+    "tarif": 2.6,
+    "name": "VoltConnect - Gorge de Loup",
+    "address": "Rue du Bourbonnais, 69009 Lyon",
+    "description": "Accès facile depuis la gare SNCF et TCL.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.767,
+    "longitude": 4.894,
+    "power": 11,
+    "tarif": 4.0,
+    "name": "EastVolt - Parilly",
+    "address": "Boulevard Emile Bollaert, 69500 Bron",
+    "description": "À deux pas du parc de Parilly, station spacieuse.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7394,
+    "longitude": 4.8994,
+    "power": 22,
+    "tarif": 5.5,
+    "name": "VoltBoost - Saint-Priest Centre",
+    "address": "Rue Maréchal Leclerc, 69800 Saint-Priest",
+    "description": "Centre-ville de Saint-Priest, parking public inclus.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.715,
+    "longitude": 4.83,
+    "power": 3.7,
+    "tarif": 2.1,
+    "name": "EcoPlug - Saint-Genis-Laval",
+    "address": "Rue des Collonges, 69230 Saint-Genis-Laval",
+    "description": "Borne résidentielle calme et peu fréquentée.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.742,
+    "longitude": 4.8755,
+    "power": 7.4,
+    "tarif": 3.1,
+    "name": "VoltAccess - États-Unis",
+    "address": "Boulevard des États-Unis, 69008 Lyon",
+    "description": "Proche du musée urbain Tony Garnier.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7612,
+    "longitude": 4.8505,
+    "power": 11,
+    "tarif": 3.8,
+    "name": "HyperCharge - Place Guichard",
+    "address": "Rue Servient, 69003 Lyon",
+    "description": "Recharge rapide entre deux trams.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7733,
+    "longitude": 4.8422,
+    "power": 11,
+    "tarif": 4.5,
+    "name": "VoltShare - Quai Gillet",
+    "address": "Quai Gillet, 69004 Lyon",
+    "description": "En bord de Saône, parfait pour une pause détente.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7579,
+    "longitude": 4.8701,
+    "power": 7.4,
+    "tarif": 3.3,
+    "name": "PlugIn - Monplaisir",
+    "address": "Rue du Premier Film, 69008 Lyon",
+    "description": "Rechargez près de l’Institut Lumière.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7755,
+    "longitude": 4.815,
+    "power": 22,
+    "tarif": 6.0,
+    "name": "FastVolt - Valmy",
+    "address": "Rue Marietton, 69009 Lyon",
+    "description": "À proximité immédiate du métro Valmy.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7874,
+    "longitude": 4.842,
+    "power": 7.4,
+    "tarif": 3.2,
+    "name": "VoltNGo - Caluire Centre",
+    "address": "Rue Coste, 69300 Caluire-et-Cuire",
+    "description": "Borne en zone commerçante.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7402,
+    "longitude": 4.8101,
+    "power": 3.7,
+    "tarif": 2.4,
+    "name": "VoltMicro - Lyon Sud",
+    "address": "Rue Commandant Charcot, 69005 Lyon",
+    "description": "Borne à petit débit mais parking gratuit.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7399,
+    "longitude": 4.8902,
+    "power": 7,
+    "tarif": 3.0,
+    "name": "VoltExpress - Moulin à Vent",
+    "address": "Avenue Francis de Pressensé, 69200 Vénissieux",
+    "description": "Idéal pour une recharge sur le retour du travail.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7612,
+    "longitude": 4.8505,
+    "power": 11,
+    "tarif": 3.8,
+    "name": "HyperCharge - Place Guichard",
+    "address": "Rue Servient, 69003 Lyon",
+    "description": "Recharge rapide entre deux trams.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7861,
+    "longitude": 4.8083,
+    "power": 3.7,
+    "tarif": 2.3,
+    "name": "VoltNature - Saint-Cyr-au-Mont-d’Or",
+    "address": "Chemin des Hauts de St Cyr, 69450 Saint-Cyr-au-Mont-d'Or",
+    "description": "Recharge au calme dans un cadre verdoyant.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7733,
+    "longitude": 4.8422,
+    "power": 11,
+    "tarif": 4.5,
+    "name": "VoltShare - Quai Gillet",
+    "address": "Quai Gillet, 69004 Lyon",
+    "description": "En bord de Saône, parfait pour une pause détente.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7579,
+    "longitude": 4.8701,
+    "power": 7.4,
+    "tarif": 3.3,
+    "name": "PlugIn - Monplaisir",
+    "address": "Rue du Premier Film, 69008 Lyon",
+    "description": "Rechargez près de l’Institut Lumière.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7755,
+    "longitude": 4.815,
+    "power": 22,
+    "tarif": 6.0,
+    "name": "FastVolt - Valmy",
+    "address": "Rue Marietton, 69009 Lyon",
+    "description": "À proximité immédiate du métro Valmy.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7874,
+    "longitude": 4.842,
+    "power": 7.4,
+    "tarif": 3.2,
+    "name": "VoltNGo - Caluire Centre",
+    "address": "Rue Coste, 69300 Caluire-et-Cuire",
+    "description": "Borne en zone commerçante.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7402,
+    "longitude": 4.8101,
+    "power": 3.7,
+    "tarif": 2.4,
+    "name": "VoltMicro - Lyon Sud",
+    "address": "Rue Commandant Charcot, 69005 Lyon",
+    "description": "Borne à petit débit mais parking gratuit.",
+    "image": "ev.jpg"
+  },
+  {
+    "latitude": 45.7399,
+    "longitude": 4.8902,
+    "power": 7,
+    "tarif": 3.0,
+    "name": "VoltExpress - Moulin à Vent",
+    "address": "Avenue Francis de Pressensé, 69200 Vénissieux",
+    "description": "Idéal pour une recharge sur le retour du travail.",
+    "image": "ev.jpg"
+  }
+]
