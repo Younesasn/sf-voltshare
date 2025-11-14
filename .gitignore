@@ -15,7 +15,6 @@
 ###< lexik/jwt-authentication-bundle ###
 
 # Temp
-.github/workflows/deploy.yaml
 .DS_Store
 ###> friendsofphp/php-cs-fixer ###
 /.php-cs-fixer.php
