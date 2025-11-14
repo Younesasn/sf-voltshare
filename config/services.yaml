@@ -20,3 +20,13 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Désactiver le timeout pour WeasyPrint car certaines versions ne supportent pas --timeout
+    weasyprint.pdf:
+        class: Pontedilana\PhpWeasyPrint\Pdf
+        arguments:
+            - '%env(WEASYPRINT_PATH)%'
+            - []
+            - null
+        calls:
+            - ['disableTimeout']
