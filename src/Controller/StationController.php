@@ -17,14 +17,14 @@ class StationController extends AbstractController
         EntityManagerInterface $em,
         Security $security,
     ): JsonResponse {
-        $name = $request->get('name');
-        $adress = $request->get('adress');
-        $latitude = (float) $request->get('latitude');
-        $longitude = (float) $request->get('longitude');
-        $price = (float) $request->get('price');
-        $power = (float) $request->get('power');
-        $description = $request->get('description');
-        $defaultMessage = $request->get('defaultMessage');
+        $name = $request->request->get('name');
+        $adress = $request->request->get('adress');
+        $latitude = (float) $request->request->get('latitude');
+        $longitude = (float) $request->request->get('longitude');
+        $price = (float) $request->request->get('price');
+        $power = (float) $request->request->get('power');
+        $description = $request->request->get('description');
+        $defaultMessage = $request->request->get('defaultMessage');
 
         /** @var \Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile */
         $imageFile = $request->files->get('imageFile');
