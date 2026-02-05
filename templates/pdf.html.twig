@@ -2,90 +2,113 @@
 
 {% block header %}
 	<style>
+		/* Zone d'impression : une seule page A4 avec marges réduites
+		   pour que tout le contenu de la facture tienne sur une page. */
 		@page {
 			size: A4;
-			margin: 0;
+			margin: 12mm 16mm;
 		}
+
+		html,
 		body {
-			font-family: Arial, Helvetica, sans-serif;
 			margin: 0;
 			padding: 0;
+			font-family: Arial, Helvetica, sans-serif;
 			background: #fff;
 			color: #222;
 		}
+
+		/* Conteneur principal de la facture */
 		.container {
 			width: 100%;
 			max-width: 900px;
 			margin: 0 auto;
-			min-height: 100vh;
 			box-sizing: border-box;
-			padding: 32px 36px 28px;
+			padding: 20px 18px 16px;
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-start;
 		}
+
 		.section {
-			margin-bottom: 40px;
+			margin-bottom: 20px;
 		}
+
 		.section:last-child {
 			margin-bottom: 0;
 		}
+
 		.header {
-			margin-bottom: 40px;
+			margin-bottom: 24px;
 		}
+
 		.title {
-			font-size: 2rem;
+			font-size: 1.8rem;
 			font-weight: bold;
 			margin-bottom: 0.5rem;
 		}
+
 		.subtitle {
 			font-size: 1.25rem;
 			font-weight: 600;
 			margin-bottom: 0.5rem;
 		}
+
 		.right {
 			display: flex;
 			justify-content: flex-end;
-			margin-bottom: 32px;
+			margin-bottom: 20px;
 		}
+
 		.text-right {
 			text-align: right;
 		}
+
 		.font-semibold {
 			font-weight: 600;
 		}
+
 		.mb-1 {
 			margin-bottom: 0.25rem;
 		}
+
 		.mb-2 {
 			margin-bottom: 0.5rem;
 		}
+
 		.total {
 			text-align: right;
 			font-weight: bold;
-			margin-top: 12px;
+			margin-top: 8px;
 		}
+
 		.text-sm {
 			font-size: 0.95rem;
 		}
+
 		.text-gray-600 {
 			color: #4B5563;
 		}
+
 		table {
 			width: 100%;
 			border-collapse: collapse;
-			margin-bottom: 0;
+			margin-bottom: 4px;
 		}
+
 		th,
 		td {
 			border: 1px solid #ccc;
 			padding: 8px 4px;
 			text-align: left;
 		}
+
 		th {
 			background: #f3f4f6;
 			font-weight: 600;
 		}
+
+		/* Éviter les coupures internes mais autoriser la répartition sur la page */
 		.container,
 		.section,
 		table,
